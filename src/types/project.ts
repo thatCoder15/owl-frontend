@@ -9,7 +9,7 @@
 // }
 
 export type Project = {
-  id: string;
+  id: number;
   title: string;
   slug: string;
   description: string;
@@ -19,6 +19,7 @@ export type Project = {
   featured: boolean;
   createdAt: string;
   updatedAt: string;
+  technologies: string[];
 };
 
 export type PaginatedProjects = {
