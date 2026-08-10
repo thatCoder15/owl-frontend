@@ -66,79 +66,34 @@
 //   );
 // }
 
-"use client";
+import type { Metadata } from "next";
+import "./globals.css";
 
-import Link from "next/link";
-import { Menu } from "lucide-react";
+import { ThemeProvider } from "@/providers/ThemeProvider";
+import { ReactQueryProvider } from "@/providers/ReactQueryProvider";
+import { siteConfig } from "@/config/site";
+import { Toaster } from "@/components/ui/sonner";
 
-import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+export const metadata: Metadata = {
+  title: siteConfig.title,
+  description: siteConfig.description,
+};
 
-import { Button } from "@/components/ui/button";
-import { Container } from "@/components/common/Container";
-
-const navItems = [
-  { name: "About", href: "#about" },
-  { name: "Skills", href: "#skills" },
-  { name: "Projects", href: "#projects" },
-  { name: "Contact", href: "#contact" },
-];
-
-export function Navbar() {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b bg-background/80 backdrop-blur">
-      <Container className="flex h-16 items-center justify-between">
-        <Link
-          href="/"
-          className="text-xl font-bold"
-        >
-          Portfolio
-        </Link>
-
-        <nav className="hidden gap-8 md:flex">
-          {navItems.map((item) => (
-            <Link
-              key={item.name}
-              href={item.href}
-              className="text-sm font-medium hover:text-primary"
-            >
-              {item.name}
-            </Link>
-          ))}
-        </nav>
-
-        <div className="hidden md:block">
-          <Button>Resume</Button>
-        </div>
-
-        <Sheet>
-          <SheetTrigger asChild>
-            <Button
-              size="icon"
-              variant="ghost"
-              className="md:hidden"
-            >
-              <Menu className="h-5 w-5" />
-            </Button>
-          </SheetTrigger>
-
-          <SheetContent side="right">
-            <div className="mt-10 flex flex-col gap-6">
-              {navItems.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                >
-                  {item.name}
-                </Link>
-              ))}
-            </div>
-          </SheetContent>
-        </Sheet>
-      </Container>
-    </header>
+    <html lang="en">
+      <body>
+        <ThemeProvider>
+          <ReactQueryProvider>
+            {children}
+            <Toaster />
+          </ReactQueryProvider>
+        </ThemeProvider>
+      </body>
+    </html>
   );
 }
