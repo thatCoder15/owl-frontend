@@ -69,14 +69,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-import { ThemeProvider } from "@/providers/ThemeProvider";
-import { ReactQueryProvider } from "@/providers/ReactQueryProvider";
-import { siteConfig } from "@/config/site";
-import { Toaster } from "@/components/ui/sonner";
-
 export const metadata: Metadata = {
-  title: siteConfig.title,
-  description: siteConfig.description,
+  title: "OWL",
+  description: "Portfolio",
 };
 
 export default function RootLayout({
@@ -86,14 +81,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
-        <ThemeProvider>
-          <ReactQueryProvider>
-            {children}
-            <Toaster />
-          </ReactQueryProvider>
-        </ThemeProvider>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
