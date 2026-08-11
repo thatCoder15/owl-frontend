@@ -98,7 +98,6 @@ import { Skills } from "@/components/sections/Skills";
 import { Projects } from "@/components/sections/Projects";
 import { Contact } from "@/components/sections/Contact";
 import { Reveal } from "@/components/common/Reveal";
-import { main } from "framer-motion/m";
 
 export default function HomePage() {
   return (
